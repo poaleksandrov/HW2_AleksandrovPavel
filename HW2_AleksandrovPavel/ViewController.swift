@@ -9,11 +9,51 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet var redColor: UIView!
+    @IBOutlet var yellowColor: UIView!
+    @IBOutlet var greenColor: UIView!
+    @IBOutlet var startButton: UIButton!
+    
+    private var currentColor = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        redColor.alpha = 0.2
+        redColor.layer.cornerRadius = 50
+        
+        yellowColor.alpha = 0.2
+        yellowColor.layer.cornerRadius = 50
+        
+        greenColor.alpha = 0.2
+        yellowColor.layer.cornerRadius = 50
+        
+        startButton.layer.cornerRadius = 15
     }
 
-
+    @IBAction func buttonDidTap() {
+    
+        if startButton.title(for: .normal) == "START" {
+            redColor.alpha = 1
+            startButton.setTitle("NEXT", for: .normal)
+            currentColor = "red"
+            return
+        }
+        
+        switch currentColor {
+        case "red":
+            redColor.alpha = 0.2
+            yellowColor.alpha = 1
+            currentColor = "yellow"
+        case "yellow":
+            yellowColor.alpha = 0.2
+            greenColor.alpha = 1
+            currentColor = "green"
+        case "green":
+            greenColor.alpha = 0.2
+            redColor.alpha = 1
+            currentColor = "red"
+        default: break
+        }
+    }
 }
 
